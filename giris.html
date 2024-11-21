@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Girişi</title>
+    <style>
+        /* Genel sayfa düzeni */
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* Sol taraf - Kitaplar görseli */
+        .left-section {
+            flex: 1;
+            background: url('kitaplar.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Sağ taraf - Giriş ekranı */
+        .right-section {
+            flex: 1;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Üst çubuk */
+        .navbar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .back-btn {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Giriş ekranı kutusu */
+        .container {
+            text-align: center;
+            width: 70%;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sol taraf - Kitaplar görseli -->
+    <div class="left-section"></div>
+
+    <!-- Sağ taraf - Giriş ekranı -->
+    <div class="right-section">
+        <!-- Üst çubuk -->
+        <div class="navbar">
+            <button class="back-btn" onclick="goBack()">Ana Sayfaya Dön</button>
+        </div>
+
+        <!-- Giriş kutusu -->
+        <div class="container">
+            <h1>Kullanıcı Girişi/Kayıt Sistemi</h1>
+            <input type="email" id="email" class="input-field" placeholder="E-Posta Giriniz" required>
+            <input type="password" id="password" class="input-field" placeholder="Şifre Giriniz" required>
+            <button class="login-btn" onclick="userLogin()">Kayıt Ol/Giriş Yap</button>
+        </div>
+    </div>
+
+    <script>
+        // Kullanıcı girişi işlevi
+        function userLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Basit doğrulama
+            if (email === "kitkir" && password === "1234") {
+                alert("Giriş başarılı!");
+                window.location.href = 'kullanici.html';  // Başarıyla giriş yaptıktan sonra yönlendirme
+            } else {
+                alert("Hatalı giriş. Lütfen bilgilerinizi kontrol edin.");
+            }
+        }
+
+        // Ana sayfaya dönme işlevi
+        function goBack() {
+            window.location.href = 'index.html';  // Ana sayfaya yönlendirme
+        }
+    </script>
+</body>
+</html>

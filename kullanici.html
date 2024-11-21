@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoriler/Kiralananlar</title>
+    <style>
+        /* Genel sayfa düzeni */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f1e3d3; /* Bej rengi arka plan */
+            color: #333;
+        }
+
+        /* Başlık kısmı */
+        .header {
+            background-color: #f1e3d3; /* Bej tonu */
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Ana içerik */
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Kitap kartı (çerçeve dışı alanı beyaz yapıyoruz) */
+        .book-card {
+            width: 250px;
+            background-color: white; /* Kitap kartının içi beyaz */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 2px solid #f1e3d3; /* Kitap çerçevesi bej rengi */
+        }
+
+        .book-card img {
+            width: 100%;
+            height: 400px;  /* Kitap kapağı boyutunda */
+            object-fit: cover;
+        }
+
+        .book-info {
+            padding: 15px;
+        }
+
+        .book-info h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .book-info button {
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .book-info button:hover {
+            background-color: #555;
+        }
+
+        /* Favoriye ekleme kutusu */
+        .favorite-notice {
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none; /* Başlangıçta gizli */
+        }
+
+        /* Kitap kiralama süresi kutusu */
+        .duration-input {
+            display: none;
+            margin-top: 10px;
+        }
+
+        /* Kitap kiralama durumu */
+        .rented-notice {
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .back-btn {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ana sayfa butonu -->
+    <div class="navbar">
+        <button class="back-btn" onclick="goBack()">Ana Sayfaya Dön</button>
+    </div>
+
+    <!-- Başlık -->
+    <div class="header">
+        FAVORİLER/KİRALANANLAR
+    </div>
+
+    <!-- Kitaplar -->
+    <div class="content">
+        <div class="book-card" id="book1">
+            <img src="kitap1.jpg" alt="Küçük Prens">
+            <div class="book-info">
+                <h2>Küçük Prens</h2>
+                <button onclick="addToFavorites('Küçük Prens', this)">Favoriye Ekle</button>
+                <div class="favorite-notice">Küçük Prens favorilere eklendi!</div>
+                <button onclick="rentBook('Küçük Prens', this)">Kitap Kirala</button>
+                <div class="duration-input">
+                    <label for="duration1">Kaç gün kiralamak istersiniz?</label>
+                    <input type="number" id="duration1" min="1">
+                    <button onclick="confirmRent('Küçük Prens', 1)">Kirala</button>
+                    <div class="rented-notice">Kalan süre: <span id="remaining1"></span> gün</div>
+                </div>
+                <div class="rented-notice" id="rented1"></div> <!-- Kalan süre kısmı buraya taşındı -->
+            </div>
+        </div>
+        <div class="book-card" id="book2">
+            <img src="kitap2.jpg" alt="Suç ve Ceza">
+            <div class="book-info">
+                <h2>Suç ve Ceza</h2>
+                <button onclick="addToFavorites('Suç ve Ceza', this)">Favoriye Ekle</button>
+                <div class="favorite-notice">Suç ve Ceza favorilere eklendi!</div>
+                <button onclick="rentBook('Suç ve Ceza', this)">Kitap Kirala</button>
+                <div class="duration-input">
+                    <label for="duration2">Kaç gün kiralamak istersiniz?</label>
+                    <input type="number" id="duration2" min="1">
+                    <button onclick="confirmRent('Suç ve Ceza', 2)">Kirala</button>
+                    <div class="rented-notice">Kalan süre: <span id="remaining2"></span> gün</div>
+                </div>
+                <div class="rented-notice" id="rented2"></div> <!-- Kalan süre kısmı buraya taşındı -->
+            </div>
+        </div>
+        <div class="book-card" id="book3">
+            <img src="kitap3.jpg" alt="Dokuza Kadar On">
+            <div class="book-info">
+                <h2>Dokuza Kadar On</h2>
+                <button onclick="addToFavorites('Dokuza Kadar On', this)">Favoriye Ekle</button>
+                <div class="favorite-notice">Dokuza Kadar On favorilere eklendi!</div>
+                <button onclick="rentBook('Dokuza Kadar On', this)">Kitap Kirala</button>
+                <div class="duration-input">
+                    <label for="duration3">Kaç gün kiralamak istersiniz?</label>
+                    <input type="number" id="duration3" min="1">
+                    <button onclick="confirmRent('Dokuza Kadar On', 3)">Kirala</button>
+                    <div class="rented-notice">Kalan süre: <span id="remaining3"></span> gün</div>
+                </div>
+                <div class="rented-notice" id="rented3"></div> <!-- Kalan süre kısmı buraya taşındı -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Ana sayfaya dönme işlevi
+        function goBack() {
+            window.location.href = 'index.html';  // Ana sayfaya yönlendirme
+        }
+
+        // Favoriye ekleme fonksiyonu
+        function addToFavorites(bookName, button) {
+            button.innerText = 'Favorilere Eklendi';
+            button.disabled = true;
+            var notice = button.nextElementSibling;
+            notice.style.display = 'block';
+            setTimeout(() => {
+                notice.style.display = 'none';
+            }, 3000);
+        }
+
+        // Kitap kiralama süresi giriş kutusunu göster
+        function rentBook(bookName, button) {
+            var inputDiv = button.nextElementSibling;
+            inputDiv.style.display = 'block';
+        }
+
+        // Kitap kiralama işlemini onayla
+        function confirmRent(bookName, bookNumber) {
+            var duration = document.getElementById('duration' + bookNumber).value;
+            if (duration && duration > 0) {
+                // Kitap kiralama süresi kutusunu gizle
+                var inputDiv = document.getElementById('book' + bookNumber).querySelector('.duration-input');
+                inputDiv.style.display = 'none';
+
+                // Buton yerine kalan süreyi göster
+                var rentButton = document.querySelectorAll('.book-info button')[bookNumber * 2 - 1];
+                rentButton.style.display = 'none';  // "Kirala" butonunu gizle
+
+                var remainingText = document.getElementById('remaining' + bookNumber);
+                remainingText.innerText = duration;  // Kalan süreyi göster
+
+                // Kiralandı bildirimi göster
+                var rentedNotice = document.getElementById('rented' + bookNumber);
+                rentedNotice.innerText = "Kiraladığınız kitap: " + bookName;
+                rentedNotice.style.display = 'block';
+                rentedNotice.innerText += " - Kalan süre: " + duration + " gün";
+                rentedNotice.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

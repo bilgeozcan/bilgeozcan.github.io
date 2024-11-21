@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitkir - Kitap Kiralama</title>
+    <style>
+        /* Sayfa arkaplanı ve genel tasarım */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100%;
+            background: url('arkaplan.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Başlık kısmı */
+        .header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 6em; /* Daha büyük başlık */
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 5px;
+        }
+
+        .header p {
+            font-size: 2em;
+            margin: 10px 0 0;
+        }
+
+        /* Giriş ve arama kutuları */
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            width: 80%;
+        }
+
+        .input-group input {
+            width: 25%; /* Eşit büyüklükte kutular */
+            padding: 20px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .btn {
+            background-color: white;
+            color: black;
+            padding: 20px 40px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Giriş yap/kayıt ol düğmesi */
+        .login-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 1.5em;
+        }
+
+        .login-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Alt bilgi kısmı */
+        .footer {
+            text-align: center;
+            font-size: 1.5em;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+        }
+
+        .footer .info {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em; /* Daha küçük bağlantı yazıları */
+        }
+
+        .footer span {
+            font-size: 0.8em; /* Daha küçük alt bilgi yazıları */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Bölümü -->
+    <div class="container">
+        <div class="header">
+            <h1>Kitkir</h1>
+            <p>Çevrimiçi Kitap Kiralama Sitesi</p>
+        </div>
+
+        <!-- Arama Alanı -->
+        <div class="input-group">
+            <input type="text" id="bookName" placeholder="Kitap İsmi Giriniz">
+            <input type="text" id="authorName" placeholder="Yazar İsmi Giriniz">
+            <input type="number" id="publicationYear" placeholder="Basım Yılı Giriniz">
+            <button class="btn" id="searchBookBtn">Kitap Ara</button>
+        </div>
+    </div>
+
+    <!-- Kayıt Ol / Giriş Yap Butonu -->
+    <a href="giris.html" class="login-btn">Kayıt Ol / Giriş Yap</a>
+
+    <!-- Alt Bilgi -->
+    <div class="footer">
+        <div class="info">
+            <span>Instagram: <a href="https://instagram.com/kitkir" target="_blank">@kitkir</a></span>
+            <span>Mail: <a href="mailto:kitkir@gmail.com">kitkir@gmail.com</a></span>
+            <span>Web: <a href="https://kitkir.com" target="_blank">kitkir.com</a></span>
+        </div>
+    </div>
+
+    <script>
+        // "Kitap Ara" düğmesi için fonksiyon
+        document.getElementById('searchBookBtn').addEventListener('click', function() {
+            const bookName = document.getElementById('bookName').value;
+            const authorName = document.getElementById('authorName').value;
+            const publicationYear = document.getElementById('publicationYear').value;
+
+            if (bookName && authorName && publicationYear) {
+                // Rastgele bir uygunluk durumu
+                const isAvailable = Math.random() > 0.5;
+                if (isAvailable) {
+                    alert(`${bookName} kitabı kiralanabilir durumda.`);
+                } else {
+                    alert(`${bookName} kitabı şu an uygun değil.`);
+                }
+            } else {
+                alert('Lütfen tüm alanları doldurun!');
+            }
+        });
+    </script>
+</body>
+</html>
