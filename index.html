@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nur Bilge Özcan — Portfolio</title>
-  <meta name="description" content="Nur Bilge Özcan — Yapay Zeka & Bilgisayar Mühendisliği Portfolyosu" />
+  <title>Nur Bilge Özcan — Yapay Zeka & Bilgisayar Mühendisi</title>
+  <meta name="description" content="Nur Bilge Özcan - Yapay Zeka, Derin Öğrenme ve Bilgisayar Mühendisliği alanında deneyimli, TEKNOFEST finalisti ve IEEE yayınına sahip mühendis." />
   <style>
     :root{--bg:#0b1020;--card:#0f1724;--accent:#6EE7B7;--muted:#9aa3b2;--glass:rgba(255,255,255,0.04)}
     *{box-sizing:border-box}html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;color:#e6eef6;background:linear-gradient(180deg,#071024 0%, #0b1020 60%);-webkit-font-smoothing:antialiased}
@@ -18,7 +18,7 @@
     .intro p{margin:6px 0;color:var(--muted)}
 
     nav{display:flex;gap:10px;margin-top:18px}
-    .btn{background:var(--glass);border:1px solid rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;color:#eaf6f1;cursor:pointer;backdrop-filter:blur(6px);transition:transform .22s ease,box-shadow .22s}
+    .btn{background:var(--glass);border:1px solid rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;color:#eaf6f1;cursor:pointer;backdrop-filter:blur(6px);transition:transform .22s ease,box-shadow .22s;text-decoration:none;display:inline-block}
     .btn:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.6)}
 
     .hero{display:grid;grid-template-columns:1fr 340px;gap:20px;margin-top:18px}
@@ -44,15 +44,47 @@
     /* Modal */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(2,6,23,0.7),rgba(2,6,23,0.9));z-index:40}
     .modal.open{display:flex}
-    .modal .box{width:min(920px,94%);background:var(--card);padding:20px;border-radius:12px}
+    .modal .box{width:min(920px,94%);background:var(--card);padding:20px;border-radius:12px;max-height:90vh;overflow-y:auto}
+    .modal-content p{line-height:1.6}
+
+    /* Experience section */
+    .experience{margin-top:28px}
+    .exp-item{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.05)}
+    .exp-item:last-child{border-bottom:none}
+    .exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+    .exp-title{font-weight:600}
+    .exp-company{color:var(--accent)}
+    .exp-date{color:var(--muted);font-size:14px}
+    .exp-desc{color:var(--muted);font-size:14px;line-height:1.5}
+
+    /* Education section */
+    .edu-item{margin-bottom:18px}
+    .edu-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+    .edu-title{font-weight:600}
+    .edu-school{color:var(--accent)}
+    .edu-date{color:var(--muted);font-size:14px}
+    .edu-desc{color:var(--muted);font-size:14px}
+
+    /* Publications section */
+    .pub-item{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.05)}
+    .pub-item:last-child{border-bottom:none}
+    .pub-title{font-weight:600;margin-bottom:6px}
+    .pub-authors{color:var(--muted);font-size:14px;margin-bottom:4px}
+    .pub-venue{color:var(--accent);font-size:14px;margin-bottom:4px}
+    .pub-date{color:var(--muted);font-size:14px}
 
     /* Responsive */
     @media (max-width:880px){.hero{grid-template-columns:1fr}.wrap{padding:18px}.avatar{width:76px;height:76px}}
+    @media (max-width:600px){.exp-header,.edu-header{flex-direction:column;gap:4px}}
 
     /* small animations */
     .typed{display:inline-block;color:var(--accent);font-weight:600}
     .pulse{animation:pulse 2s infinite}
     @keyframes pulse{0%{transform:scale(.98)}50%{transform:scale(1.02)}100%{transform:scale(.98)}}
+
+    /* Section spacing */
+    section{margin-top:28px}
+    section h3{margin-top:0}
 
   </style>
 </head>
@@ -66,8 +98,10 @@
         <p>Bilgisayar Mühendisliği 4. Sınıf • Yapay Zeka, Derin Öğrenme & LLM</p>
         <nav>
           <button class="btn" data-scroll="about">Hakkımda</button>
+          <button class="btn" data-scroll="experience">Deneyim</button>
           <button class="btn" data-scroll="projects">Projeler</button>
-          <button class="btn" data-scroll="contact">İletişim</button>
+          <button class="btn" data-scroll="education">Eğitim</button>
+          <button class="btn" data-scroll="publications">Yayınlar</button>
           <a class="btn" id="downloadCv" href="#">Özgeçmişi İndir</a>
         </nav>
       </div>
@@ -78,7 +112,7 @@
         <div class="card about" id="about">
           <h3>Merhaba 👋, ben <span class="typed">Nur Bilge</span></h3>
           <p>
-            Bilgisayar Mühendisliği 4. sınıf öğrencisi; yapay zeka, derin öğrenme ve proje yönetimi alanlarında deneyimliyim. TEKNOFEST finalistliği, TÜBİTAK projeleri ve IEEE yayınına sahibim.
+            Yozgat Bozok Üniversitesi Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. Yapay zeka, derin öğrenme, LLM ve proje yönetimi alanlarında deneyimli, ekip çalışmasına yatkın, yenilikçi ve sonuç odaklı bir mühendisim. TEKNOFEST finalistliği, TÜBİTAK projeleri ve IEEE yayınım bulunmaktadır.
           </p>
 
           <div class="skills" aria-hidden="false">
@@ -88,6 +122,10 @@
             <div class="skill">C++</div>
             <div class="skill">Gömülü Sistemler</div>
             <div class="skill">Proje Yönetimi</div>
+            <div class="skill">Görsel Tanıma</div>
+            <div class="skill">Derin Öğrenme</div>
+            <div class="skill">Makine Öğrenimi</div>
+            <div class="skill">Arduino</div>
           </div>
 
           <h4 style="margin-top:14px">İletişim</h4>
@@ -99,34 +137,170 @@
           <h3>Hızlı Bilgiler</h3>
           <p class="muted">Doğum: 5 Mart 2004 • Kayseri</p>
           <p class="muted">Eğitim: Yozgat Bozok Üniversitesi — Bilgisayar Mühendisliği</p>
+          <p class="muted">GANO: 2.80</p>
         </div>
+        
+        <section class="card experience" id="experience">
+          <h3>İş Deneyimi</h3>
+          
+          <div class="exp-item">
+            <div class="exp-header">
+              <div>
+                <div class="exp-title">Araştırmacı / Yazılım Mühendisi</div>
+                <div class="exp-company">Tübitak · Serbest Çalışan</div>
+              </div>
+              <div class="exp-date">Mayıs 2024 – Halen</div>
+            </div>
+            <div class="exp-desc">
+              Yapay zeka tabanlı akıllı trafik kontrol sistemi geliştirilmesi, görsel tanıma ve derin öğrenme algoritmalarının uygulanması, proje yönetimi ve teknik çözümleme süreçlerinde aktif rol alma.
+            </div>
+          </div>
+          
+          <div class="exp-item">
+            <div class="exp-header">
+              <div>
+                <div class="exp-title">Bilgisayar Mühendisi Stajyeri</div>
+                <div class="exp-company">Smart Güneş Teknolojileri</div>
+              </div>
+              <div class="exp-date">Ocak 2025 – Ağustos 2025</div>
+            </div>
+            <div class="exp-desc">
+              Görsel tanıma ve LLM tabanlı uygulamalar geliştirme, yazılım entegrasyonu, test ve teknik destek süreçleri, robotik sistemlerde yapay zeka modellerinin uyarlanması ve iyileştirilmesi.
+            </div>
+          </div>
+          
+          <div class="exp-item">
+            <div class="exp-header">
+              <div>
+                <div class="exp-title">Bilgisayar Mühendisliği Stajyeri</div>
+                <div class="exp-company">İstanbul Üniversitesi – 3B TETLab</div>
+              </div>
+              <div class="exp-date">Temmuz 2024 – Ocak 2025</div>
+            </div>
+            <div class="exp-desc">
+              Donanım tabanlı staj kapsamında Arduino ile gömülü sistem projeleri, görsel tanıma uygulamaları ve sensör entegrasyonu, prototip geliştirme ve test süreçlerinde yer alma.
+            </div>
+          </div>
+          
+          <div class="exp-item">
+            <div class="exp-header">
+              <div>
+                <div class="exp-title">Proje Yönetimi Stajyeri</div>
+                <div class="exp-company">TNC Group</div>
+              </div>
+              <div class="exp-date">Şubat 2025 – Mart 2025</div>
+            </div>
+            <div class="exp-desc">
+              Proje yönetimi, yapay zeka, bilişim hukuku ve organizasyon eğitimleri, stratejik proje planlama ve sunum.
+            </div>
+          </div>
+        </section>
+        
+        <section class="card education" id="education">
+          <h3>Eğitim</h3>
+          
+          <div class="edu-item">
+            <div class="edu-header">
+              <div>
+                <div class="edu-title">Lisans, Bilgisayar Mühendisliği</div>
+                <div class="edu-school">Yozgat Bozok Üniversitesi</div>
+              </div>
+              <div class="edu-date">Eylül 2022 – Devam Ediyor</div>
+            </div>
+            <div class="edu-desc">GANO: 2.80</div>
+          </div>
+          
+          <div class="edu-item">
+            <div class="edu-header">
+              <div>
+                <div class="edu-title">Lise</div>
+                <div class="edu-school">Belgin Atila Çallıoğlu Fen Lisesi</div>
+              </div>
+              <div class="edu-date">Eylül 2018 – Haziran 2022</div>
+            </div>
+            <div class="edu-desc">Diploma Puanı: 92,62</div>
+          </div>
+        </section>
+        
+        <section class="card" id="publications">
+          <h3>Yayınlar</h3>
+          
+          <div class="pub-item">
+            <div class="pub-title">"Strawberry Ripeness Detection: Optimizing Harvesting Efficiency with YOLOv11"</div>
+            <div class="pub-authors">Yazarlar: Tahsin Soyak, Nur Bilge Özcan, Gökalp Çınarer</div>
+            <div class="pub-venue">Yayıncı: IEEE</div>
+            <div class="pub-date">Konferans Tarihi: 23-24 Mayıs 2025 • DOI: 10.1109/ICHORA65333.2025.11017268</div>
+          </div>
+        </section>
       </div>
 
       <aside class="card" style="height:100%">
         <h3 style="margin-top:0">Öne Çıkan Projeler</h3>
         <div class="projects" id="projects">
-          <div class="proj" data-title="Çilek Olgunluk Tespiti" data-desc="YOLOv8/YOLOv10 ile çilek olgunluk tespiti — TEKNOFEST finalistleri" data-link="#">
+          <div class="proj" data-title="Çilek Olgunluk Tespiti" data-desc="TEKNOFEST 2023 ve 2024 yarışmalarında finalist olan bu projede, YOLOv8 ve YOLOv10 modellerini kullanarak çilek olgunluk tespit sistemi geliştirdim. Sistem, tarım teknolojileri kategorisinde 7.'lik elde etti ve gelişmiş görsel tanıma algoritmalarıyla tarım verimliliğini artırmayı hedefledi." data-link="#">
             <h4>Çilek Olgunluk Tespiti</h4>
-            <p>TEKNOFEST 2023 & 2024 projektleri</p>
+            <p>TEKNOFEST 2023 & 2024 projeleri</p>
           </div>
 
-          <div class="proj" data-title="Akıllı Trafik Yönetimi" data-desc="YOLO tabanlı akıllı trafik kontrol sistemi (TÜBİTAK projesi)" data-link="#">
+          <div class="proj" data-title="Akıllı Trafik Yönetimi" data-desc="TÜBİTAK destekli bu projede, YOLOv8 tabanlı akıllı trafik kontrol sistemi geliştirdim. Sistem, gerçek zamanlı trafik analizi yaparak trafik akışını optimize etmeyi ve kavşaklardaki bekleme sürelerini azaltmayı hedefliyor. Derin öğrenme algoritmalarıyla araç tespiti ve sınıflandırması yapıyor." data-link="#">
             <h4>Akıllı Trafik Yönetimi</h4>
             <p>TÜBİTAK projesi — Görsel tanıma ve kontrol</p>
           </div>
 
-          <div class="proj" data-title="IEEE Yayını" data-desc="Strawberry Ripeness Detection — IEEE yayınında yazar olarak yer aldı." data-link="#">
+          <div class="proj" data-title="Kenevir Cinsiyet Tespiti" data-desc="Yozgat Bozok Üniversitesi Proje Etkinliği'nde 2.'lik ödülü alan bu projede, derin öğrenme modelleri kullanarak kenevir bitkilerinin cinsiyetini erken aşamada tespit eden bir sistem geliştirdim. Bu sistem, tarımsal üretimde verimliliği artırmayı hedefliyor." data-link="#">
+            <h4>Kenevir Cinsiyet Tespiti</h4>
+            <p>Derin öğrenme ile bitki analizi</p>
+          </div>
+          
+          <div class="proj" data-title="İlaç Fiyat Tahmini" data-desc="Yozgat Bozok Üniversitesi Proje Etkinliği'nde 3.'lük ödülü alan bu projede, makine öğrenimi algoritmaları kullanarak ilaç fiyat tahmini yapan bir model geliştirdim. Model, çeşitli farmasötik özelliklere dayanarak ilaç fiyatlarını tahmin ediyor." data-link="#">
+            <h4>İlaç Fiyat Tahmini</h4>
+            <p>Makine öğrenimi ile tahmin modeli</p>
+          </div>
+          
+          <div class="proj" data-title="IEEE Yayını" data-desc="IEEE'de yayınlanan 'Strawberry Ripeness Detection: Optimizing Harvesting Efficiency with YOLOv11' başlıklı makalede yazar olarak yer aldım. Bu çalışmada, YOLOv11 modelini kullanarak çilek olgunluk tespitinde yeni bir yaklaşım sunduk ve tarım verimliliğini artırmayı hedefledik." data-link="#">
             <h4>IEEE Yayını</h4>
             <p>IEEE • Strawberry Ripeness Detection (2025)</p>
           </div>
 
+        </div>
+        
+        <div class="card" style="margin-top:18px">
+          <h3>Gönüllü Deneyim</h3>
+          <ul style="color:var(--muted);font-size:14px;padding-left:18px">
+            <li>Microsoft Student Ambassador</li>
+            <li>Google Developer Groups (GDG) Üyesi</li>
+            <li>T3 Vakfı, Eğitmen Mentor</li>
+            <li>YÖKAK Öğrenci Kalite Değerlendiricisi</li>
+            <li>Yozgat Bozok Üniversitesi Bilgisayar Topluluğu Başkanı</li>
+            <li>Yozgat Bozok Üniversitesi Kalite Topluluğu Kalite Elçisi</li>
+          </ul>
+        </div>
+        
+        <div class="card" style="margin-top:18px">
+          <h3>Referanslar</h3>
+          <div style="color:var(--muted);font-size:14px">
+            <p><strong>Zekiye İrem Akıcı</strong><br>
+            Markalar Genel Koordinatörü – TNC Group<br>
+            E-posta: iremakici@tncgroup.info</p>
+            
+            <p><strong>Görkem Kılıç</strong><br>
+            IT Uzmanı – Smart Güneş Teknolojileri<br>
+            Telefon: +90 537 723 86 19</p>
+            
+            <p><strong>Dr. Öğr. Üyesi Gökalp Çınarer</strong><br>
+            Yozgat Bozok Üniversitesi<br>
+            Telefon: +90 506 533 52 99</p>
+          </div>
         </div>
       </aside>
     </section>
 
     <footer>
       <div>© <span id="year"></span> Nur Bilge Özcan</div>
-      <div style="display:flex;gap:12px"><a href="#" class="btn">Portfolio</a><a href="#" class="btn">CV</a></div>
+      <div style="display:flex;gap:12px">
+        <a href="#" class="btn">Portfolio</a>
+        <a href="#" class="btn" id="downloadCvFooter">CV</a>
+      </div>
     </footer>
   </div>
 
@@ -141,7 +315,9 @@
     <div class="box">
       <button class="btn" id="closeModal" style="float:right">Kapat</button>
       <h2 id="modalTitle"></h2>
-      <p id="modalDesc"></p>
+      <div class="modal-content">
+        <p id="modalDesc"></p>
+      </div>
       <p style="margin-top:12px"><a id="modalLink" class="btn" href="#">Detayları Gör</a></p>
     </div>
   </div>
@@ -175,6 +351,16 @@
 
     // --- CV download (assumes you will upload cv.pdf to same repo)
     document.getElementById('downloadCv').addEventListener('click',(e)=>{
+      e.preventDefault();
+      const link = document.createElement('a');
+      link.href = 'NUR_BILGE_OZCAN.pdf';
+      link.download = 'NUR_BILGE_OZCAN_CV.pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    });
+    
+    document.getElementById('downloadCvFooter').addEventListener('click',(e)=>{
       e.preventDefault();
       const link = document.createElement('a');
       link.href = 'NUR_BILGE_OZCAN.pdf';
