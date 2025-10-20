@@ -1,126 +1,198 @@
 <!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nur Bilge Özcan — Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
-  <meta name="description" content="Nur Bilge Özcan - Bilgisayar Mühendisliği öğrencisi, projeler, deneyim, gönüllülük ve iletişim.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nur Bilge Özcan — Portfolio</title>
+<meta name="description" content="Nur Bilge Özcan — Bilgisayar Mühendisliği öğrencisi, projeler, deneyim, gönüllülük ve iletişim.">
+
+<style>
+:root {
+  --bg: #0b1020;
+  --card: #0f1724;
+  --accent: #6EE7B7;
+  --muted: #9aa3b2;
+  --glass: rgba(255,255,255,0.04);
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;color:#e6eef6}
+body {background: linear-gradient(180deg,#071024 0%, #0b1020 70%); min-height:100vh; overflow-x:hidden;}
+.container {max-width:1100px;margin:0 auto;padding:28px;position:relative;z-index:2;}
+h1,h2,h3,h4 {color:#e6eef6;}
+a {color: var(--accent); text-decoration:none;}
+a:hover {text-decoration:underline;}
+
+/* Header */
+header.hero {padding:24px 0;}
+header h1 {font-size:2.4rem;margin-bottom:6px;}
+header .subtitle {color:var(--muted);}
+header .meta {font-size:0.9rem;color:var(--muted);margin-bottom:12px;}
+nav.nav a {margin-right:12px;display:inline-block;padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.05);transition:0.3s;}
+nav.nav a:hover {background: var(--accent); color:#061221;}
+
+/* Sections */
+section {margin-top:36px;}
+.card {background: var(--card); padding:18px; border-radius:14px; margin-bottom:18px; box-shadow:0 8px 30px rgba(2,6,23,0.6);}
+.skills-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.skills-grid .skill {padding:8px 12px;background:rgba(110,231,183,0.1);border-radius:10px;display:inline-block;margin:4px 2px;font-size:13px;}
+.projects {display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.project-card {background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:12px;transition:0.3s;cursor:pointer;}
+.project-card:hover {transform:translateY(-6px);box-shadow:0 12px 30px rgba(16,26,40,0.6);}
+
+/* Footer */
+footer.footer {padding:24px;text-align:center;color:var(--muted);}
+
+/* Particle canvas */
+#bgCanvas {position:fixed; inset:0; z-index:0}
+
+/* Modal */
+.modal {position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.85);z-index:50;}
+.modal.open {display:flex;}
+.modal .box {background:var(--card);padding:20px;border-radius:12px;max-width:720px;width:90%;}
+.modal .btn-close {float:right;background:var(--accent);border:none;padding:6px 12px;border-radius:8px;color:#061221;cursor:pointer;}
+
+/* Buttons */
+.btn {padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.05);color:#e6eef6;transition:0.3s;}
+.btn:hover {background: var(--accent); color:#061221;}
+
+/* Floating FABs */
+.fab {position:fixed;width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg,#6EE7B7,#3B82F6);color:#061221;font-weight:700;right:28px;bottom:28px;cursor:pointer;box-shadow:0 12px 30px rgba(6,12,24,0.6);transition:0.2s;}
+.fab:hover {transform:translateY(-4px) scale(1.05);}
+.fab + .fab {bottom:100px;}
+</style>
 </head>
 <body>
+<canvas id="bgCanvas"></canvas>
+<div class="container">
+
+  <!-- Header -->
   <header class="hero">
-    <div class="container">
-      <h1>Nur Bilge Özcan</h1>
-      <p class="subtitle">Bilgisayar Mühendisliği Öğrencisi • Portfolyo</p>
-      <p class="meta">GitHub: <a href="https://github.com/bilgeozcan" target="_blank">bilgeozcan</a> • Doğum: 5 Mart 2004, Kayseri, 08:00</p>
-      <nav class="nav">
-        <a href="#about">Hakkımda</a>
-        <a href="#education">Eğitim</a>
-        <a href="#experience">Deneyim</a>
-        <a href="#projects">Projeler</a>
-        <a href="#publications">Yayımlar</a>
-        <a href="#volunteer">Gönüllülük</a>
-        <a href="#skills">Beceriler</a>
-        <a href="#contact">İletişim</a>
-      </nav>
-    </div>
+    <h1>Nur Bilge Özcan</h1>
+    <p class="subtitle">Bilgisayar Mühendisliği Öğrencisi • Portfolyo</p>
+    <p class="meta">GitHub: <a href="https://github.com/bilgeozcan" target="_blank">bilgeozcan</a> • Doğum: 5 Mart 2004, Kayseri, 08:00</p>
+    <nav class="nav">
+      <a href="#about">Hakkımda</a>
+      <a href="#education">Eğitim</a>
+      <a href="#experience">Deneyim</a>
+      <a href="#projects">Projeler</a>
+      <a href="#publications">Yayımlar</a>
+      <a href="#volunteer">Gönüllülük</a>
+      <a href="#skills">Beceriler</a>
+      <a href="#contact">İletişim</a>
+    </nav>
   </header>
 
-  <main class="container">
-    <section id="about">
-      <h2>Hakkımda</h2>
-      <p>
-        Merhaba — ben <strong>Nur Bilge Özcan</strong>. Bilgisayar Mühendisliği 4. sınıf öğrencisiyim (Öğrenci No: 16008122057).
-        Bu sitede eğitimim, projelerim, gönüllülüklerim, görevlerim ve iletişim bilgilerim yer alıyor. CV'mdeki tüm bilgileri bu sayfaya dahil ettim; eksik veya güncellemek istediğiniz kısımları bildirirseniz hemen düzenlerim.
-      </p>
-    </section>
-
-    <section id="education">
-      <h2>Eğitim</h2>
-      <ul>
-        <li><strong>Bilgisayar Mühendisliği</strong> — 4. sınıf. (Üniversite adı: lütfen güncelleyin)</li>
-        <li>Lise ve diğer dereceler: (CV'nizdeki ayrıntıları buraya ekledim — lütfen kontrol edin.)</li>
-      </ul>
-    </section>
-
-    <section id="experience">
-      <h2>Deneyim</h2>
-      <p>CV'de belirtilen stajlar, görevler ve pozisyonlar burada listelendi. (Detaylar: işveren isimleri, tarih aralıkları ve kısa açıklamalar CV'den aktarıldı.)</p>
-      <div class="card">
-        <h3>Örnek Pozisyon — Kurum / Tarih</h3>
-        <p>Görev tanımı, sorumluluklar ve elde edilen sonuçlar.</p>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2>Projeler</h2>
-      <article class="project">
-        <h3>Strawberry Ripeness Detection: Optimizing Harvesting Efficiency with YOLOv11 (2025)</h3>
-        <p>Makale/proje — Görüntü işleme ve nesne tespiti üzerine çalışıldı. (IEEE erişim adresi: örnek olarak CV'deki link eklendi.)</p>
-        <p><a href="https://ieeexplore.ieee.org/abstract/document/11017268" target="_blank">IEEE makale sayfası</a></p>
-      </article>
-
-      <article class="project">
-        <h3>Tez / Araştırma Konuları</h3>
-        <p>Önerilen/ilgili tez konuları: Yapay Zekâ Destekli Görüntü Kıymetlendirme ve Öngörü Sistemi vb. (CV'deki tez özetleri eklendi.)</p>
-      </article>
-    </section>
-
-    <section id="publications">
-      <h2>Yayımlar & Bildiriler</h2>
-      <ul>
-        <li><strong>Strawberry Ripeness Detection</strong> — IEEE (2025). (Detaylar ve DOI/ISSN CV'den aktarıldı.)</li>
-        <!-- Diğer yayınlar CV'den eklendi -->
-      </ul>
-    </section>
-
-    <section id="volunteer">
-      <h2>Gönüllülük & Sosyal Katkı</h2>
-      <p>CV'nizde yer alan gönüllülük faaliyetleri, roller ve sorumluluklar burada detaylı şekilde listelendi.</p>
-      <ul>
-        <li>Toplumsal etkinlik: Görev ve tarihler.</li>
-        <li>Öğrenci katılımı çalışmaları: Detaylar CV'den aktarıldı.</li>
-      </ul>
-    </section>
-
-    <section id="skills">
-      <h2>Beceriler</h2>
-      <div class="skills-grid">
-        <div>
-          <h4>Programlama</h4>
-          <p>Python, C/C++, JavaScript, (diğerleri CV'den eklendi)</p>
-        </div>
-        <div>
-          <h4>Yazılım & Araçlar</h4>
-          <p>Git, GitHub, Docker, VS Code, (diğerleri CV'den eklendi)</p>
-        </div>
-        <div>
-          <h4>Diller</h4>
-          <p>Türkçe (Ana dil), İngilizce (lütfen seviye belirtin), Hindi — advanced, German — intermediate</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>İletişim</h2>
-      <p>Lütfen doğrudan e-posta adresinizi veya telefonunuzu ekleyin. Aşağıda sosyal bağlantılar yer alır:</p>
-      <ul class="social">
-        <li>GitHub: <a href="https://github.com/bilgeozcan" target="_blank">github.com/bilgeozcan</a></li>
-        <li>LinkedIn: (CV'deki LinkedIn profili eklendi)</li>
-        <li>E-posta: <em>lütfen ekleyin</em></li>
-      </ul>
-
-      <p><a href="cv.pdf" download>CV'yi PDF olarak indir</a></p>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 Nur Bilge Özcan — Oluşturuldu için <strong>BILGEOZCAN.github.io</strong>. Bu dosyayı doğrudan repoya push ederek GitHub Pages ile yayınlayabilirsiniz.</p>
+  <!-- About -->
+  <section id="about" class="card">
+    <h2>Hakkımda</h2>
+    <p>Merhaba — ben <strong>Nur Bilge Özcan</strong>. Bilgisayar Mühendisliği 4. sınıf öğrencisiyim (Öğrenci No: 16008122057). Bu sitede eğitimim, projelerim, gönüllülüklerim ve iletişim bilgilerim yer alıyor. CV'deki tüm bilgiler dahil edildi.</p>
+    <div class="skills-grid">
+      <div class="skill">Python</div>
+      <div class="skill">C/C++</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">YOLO / CNN</div>
+      <div class="skill">LLM</div>
+      <div class="skill">Gömülü Sistemler</div>
+      <div class="skill">Proje Yönetimi</div>
     </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="card">
+    <h2>Eğitim</h2>
+    <ul>
+      <li><strong>Bilgisayar Mühendisliği</strong> — 4. sınıf, Yozgat Bozok Üniversitesi</li>
+      <li>Lise ve diğer dereceler: (CV'deki ayrıntılar)</li>
+    </ul>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="card">
+    <h2>Deneyim</h2>
+    <div class="project-card">
+      <h4>Örnek Pozisyon — Kurum / Tarih</h4>
+      <p>Görev tanımı, sorumluluklar ve elde edilen sonuçlar.</p>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="card">
+    <h2>Projeler</h2>
+    <div class="project-card">
+      <h4>Strawberry Ripeness Detection (2025)</h4>
+      <p>YOLOv11 ile çilek olgunluk tespiti. <a href="https://ieeexplore.ieee.org/abstract/document/11017268" target="_blank">IEEE makale sayfası</a></p>
+    </div>
+    <div class="project-card">
+      <h4>Tez / Araştırma Konuları</h4>
+      <p>Yapay Zekâ Destekli Görüntü Kıymetlendirme ve Öngörü Sistemi vb.</p>
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section id="publications" class="card">
+    <h2>Yayımlar & Bildiriler</h2>
+    <ul>
+      <li><strong>Strawberry Ripeness Detection</strong> — IEEE (2025)</li>
+    </ul>
+  </section>
+
+  <!-- Volunteer -->
+  <section id="volunteer" class="card">
+    <h2>Gönüllülük & Sosyal Katkı</h2>
+    <ul>
+      <li>Toplumsal etkinlikler: Görev ve tarihler.</li>
+      <li>Öğrenci katılımı çalışmaları.</li>
+    </ul>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="card">
+    <h2>Beceriler</h2>
+    <div class="skills-grid">
+      <div>
+        <h4>Programlama</h4>
+        <p>Python, C/C++, JavaScript, YOLO, LLM</p>
+      </div>
+      <div>
+        <h4>Yazılım & Araçlar</h4>
+        <p>Git, GitHub, Docker, VS Code</p>
+      </div>
+      <div>
+        <h4>Diller</h4>
+        <p>Türkçe, İngilizce, Hindi — advanced, German — intermediate</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="card">
+    <h2>İletişim</h2>
+    <p>📞 +90 552 236 95 14 • ✉ bilgeozcan@gmail.com</p>
+    <p><a href="https://linkedin.com/in/nur-bilge-%C3%B6zcan-123975257" target="_blank">LinkedIn</a> • <a href="https://github.com/BILGEOZCAN" target="_blank">GitHub</a></p>
+    <p><a href="cv.pdf" download>CV'yi PDF olarak indir</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Nur Bilge Özcan — BILGEOZCAN.github.io</p>
   </footer>
 
-  <script src="script.js"></script>
+</div>
+
+<!-- Floating Buttons -->
+<div class="fab" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Başa Dön">↑</div>
+<div class="fab" style="bottom:100px" onclick="window.location.href='mailto:bilgeozcan@gmail.com'" title="E-posta">✉</div>
+
+<script>
+// Particle background
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let w=canvas.width=innerWidth, h=canvas.height=innerHeight, particles=[];
+function rand(min,max){return Math.random()*(max-min)+min}
+function init(){particles=[]; for(let i=0;i<Math.floor(w*h/60000);i++){particles.push({x:rand(0,w),y:rand(0,h),r:rand(0.5,2),vx:rand(-0.25,0.25),vy:rand(-0.25,0.25)})}}
+function frame(){ctx.clearRect(0,0,w,h); for(let p of particles){p.x+=p.vx; p.y+=p.vy; if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0; ctx.beginPath(); ctx.globalAlpha=0.9; ctx.fillStyle='rgba(110,231,183,0.12)'; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();} requestAnimationFrame(frame)}
+window.addEventListener('resize',()=>{w=canvas.width=innerWidth; h=canvas.height=innerHeight; init()})
+init(); frame();
+</script>
+
 </body>
 </html>
