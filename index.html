@@ -11,7 +11,13 @@
     content="Nur Bilge Özcan — Computer Engineering student, AI researcher, software developer, IEEE author, and TEKNOFEST finalist."
   />
 
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#070912" />
+
+  <script>
+    document.documentElement.classList.add("js");
+  </script>
+
+  <link rel="stylesheet" href="./styles.css?v=2026-05-11" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,18 +28,19 @@
 </head>
 
 <body>
-  <div class="page-glow page-glow-one"></div>
-  <div class="page-glow page-glow-two"></div>
+  <div class="bg-orb orb-one"></div>
+  <div class="bg-orb orb-two"></div>
+  <div class="bg-orb orb-three"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
 
-  <header class="site-header" id="top">
-    <nav class="navbar">
-      <a href="#top" class="logo">
-        <span class="logo-mark">NB</span>
-        <span class="logo-text">Nur Bilge Özcan</span>
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="#home" class="brand" aria-label="Go to homepage">
+        <span class="brand-mark">NB</span>
+        <span class="brand-text">Nur Bilge Özcan</span>
       </a>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
         <span></span>
         <span></span>
         <span></span>
@@ -41,6 +48,7 @@
 
       <div class="nav-links" id="navLinks">
         <a href="#about">About</a>
+        <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#publication">Publication</a>
@@ -51,35 +59,35 @@
 
   <main>
     <!-- HERO -->
-    <section class="hero section">
+    <section class="hero section" id="home">
       <div class="hero-grid">
         <div class="hero-content reveal">
           <div class="eyebrow">
-            <span class="pulse-dot"></span>
+            <span class="status-dot"></span>
             Computer Engineering · AI Research · Software Development
           </div>
 
           <h1>
             Building intelligent systems with
-            <span class="gradient-text">AI, vision, and software engineering.</span>
+            <span>AI, vision, and modern software.</span>
           </h1>
 
           <p class="hero-description">
             I am Nur Bilge Özcan, a Computer Engineering student focused on artificial intelligence,
             deep learning, computer vision, and modern software development. I enjoy building
             research-oriented projects, contributing to open-source work, and exploring AI-assisted
-            engineering workflows.
+            software development workflows.
           </p>
 
           <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary">View Projects</a>
-            <a href="cv.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Download CV</a>
+            <a href="#projects" class="btn btn-primary">Explore Projects</a>
+            <a href="./cv.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Download CV</a>
           </div>
 
-          <div class="hero-meta">
+          <div class="hero-stats">
             <div>
               <strong>3.10 / 4.00</strong>
-              <span>Current GPA</span>
+              <span>GPA</span>
             </div>
             <div>
               <strong>IEEE</strong>
@@ -93,19 +101,20 @@
         </div>
 
         <div class="hero-visual reveal">
-          <div class="orbit-card">
-            <div class="orbit orbit-one"></div>
-            <div class="orbit orbit-two"></div>
-            <div class="profile-core">
-              <span class="core-icon">🤖</span>
+          <div class="ai-card">
+            <div class="ai-ring ring-one"></div>
+            <div class="ai-ring ring-two"></div>
+
+            <div class="ai-core">
+              <span>🤖</span>
               <h2>AI Researcher</h2>
               <p>Computer Vision · Deep Learning · LLMs</p>
             </div>
 
-            <div class="floating-chip chip-one">PyTorch</div>
-            <div class="floating-chip chip-two">OpenCV</div>
-            <div class="floating-chip chip-three">TensorFlow</div>
-            <div class="floating-chip chip-four">YOLO</div>
+            <div class="tech-chip chip-1">PyTorch</div>
+            <div class="tech-chip chip-2">OpenCV</div>
+            <div class="tech-chip chip-3">TensorFlow</div>
+            <div class="tech-chip chip-4">YOLO</div>
           </div>
         </div>
       </div>
@@ -114,14 +123,15 @@
     <!-- ABOUT -->
     <section class="section" id="about">
       <div class="section-heading reveal">
-        <span class="section-kicker">About</span>
-        <h2>Research-minded developer with a strong AI focus.</h2>
+        <span class="section-label">About Me</span>
+        <h2>Research-minded developer with a strong AI and software engineering focus.</h2>
         <p>
-          My work connects academic research, model development, and practical software engineering.
+          My work connects academic research, model development, image processing, and practical
+          software engineering.
         </p>
       </div>
 
-      <div class="about-grid">
+      <div class="card-grid three">
         <article class="glass-card reveal">
           <div class="card-icon">🎓</div>
           <h3>Education</h3>
@@ -135,17 +145,17 @@
           <div class="card-icon">🧠</div>
           <h3>AI & Machine Learning</h3>
           <p>
-            Focused on machine learning, deep learning, CNNs, computer vision, NLP,
+            Interested in machine learning, deep learning, CNNs, computer vision, NLP,
             model training, evaluation, and prompt engineering.
           </p>
         </article>
 
         <article class="glass-card reveal">
-          <div class="card-icon">💻</div>
-          <h3>Software Engineering</h3>
+          <div class="card-icon">🚀</div>
+          <h3>Engineering Mindset</h3>
           <p>
-            Experienced with Python, C++, Java, C#, JavaScript, MATLAB, SQL, Bash,
-            .NET, Spring Boot, Docker, Git, and Linux.
+            Focused on building practical, documented, and maintainable software projects
+            that combine research with real-world use cases.
           </p>
         </article>
       </div>
@@ -154,14 +164,14 @@
     <!-- SKILLS -->
     <section class="section" id="skills">
       <div class="section-heading reveal">
-        <span class="section-kicker">Skills</span>
-        <h2>Technical toolkit for AI-powered software products.</h2>
+        <span class="section-label">Technical Skills</span>
+        <h2>Tools and technologies I use to build AI-powered software.</h2>
       </div>
 
-      <div class="skills-layout reveal">
-        <div class="skill-column">
-          <h3>Languages</h3>
-          <div class="tag-cloud">
+      <div class="skills-grid">
+        <article class="skill-card reveal">
+          <h3>Programming Languages</h3>
+          <div class="tag-list">
             <span>Python</span>
             <span>C++</span>
             <span>Java</span>
@@ -171,91 +181,93 @@
             <span>SQL</span>
             <span>Bash</span>
           </div>
-        </div>
+        </article>
 
-        <div class="skill-column">
+        <article class="skill-card reveal">
           <h3>AI & Data</h3>
-          <div class="tag-cloud">
-            <span>PyTorch</span>
-            <span>TensorFlow</span>
-            <span>Keras</span>
+          <div class="tag-list">
             <span>OpenCV</span>
+            <span>TensorFlow</span>
+            <span>PyTorch</span>
+            <span>Keras</span>
             <span>Scikit-learn</span>
             <span>NumPy</span>
             <span>Pandas</span>
             <span>CNNs</span>
+            <span>NLP</span>
           </div>
-        </div>
+        </article>
 
-        <div class="skill-column">
-          <h3>Engineering</h3>
-          <div class="tag-cloud">
+        <article class="skill-card reveal">
+          <h3>Software & Platforms</h3>
+          <div class="tag-list">
             <span>.NET</span>
             <span>Spring Boot</span>
             <span>Docker</span>
             <span>Git</span>
             <span>GitHub</span>
             <span>Linux</span>
-            <span>Agile</span>
-            <span>TDD</span>
+            <span>VS Code</span>
+            <span>Visual Studio</span>
+            <span>Jupyter Notebook</span>
           </div>
-        </div>
+        </article>
       </div>
     </section>
 
     <!-- EXPERIENCE -->
     <section class="section" id="experience">
       <div class="section-heading reveal">
-        <span class="section-kicker">Experience</span>
-        <h2>Applied AI, image processing, and software development experience.</h2>
+        <span class="section-label">Experience</span>
+        <h2>Applied experience in AI, image processing, and software development.</h2>
       </div>
 
       <div class="timeline">
         <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Sep 2025 — Jan 2026</span>
+          <div class="timeline-marker"></div>
+          <div class="timeline-card">
+            <span class="timeline-date">September 2025 — January 2026</span>
             <h3>TÜBİTAK — Researcher / Software Engineer</h3>
             <p>
-              Contributed to an artificial intelligence-based intelligent traffic control system.
-              Designed real-time image processing and decision-making components using OpenCV,
-              TensorFlow, and PyTorch.
+              Contributed to the development of an artificial intelligence-based intelligent traffic
+              control system. Designed real-time image processing and decision-making components
+              using OpenCV, TensorFlow, and PyTorch.
             </p>
           </div>
         </article>
 
         <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Jan 2023 — Aug 2025</span>
+          <div class="timeline-marker"></div>
+          <div class="timeline-card">
+            <span class="timeline-date">January 2023 — August 2025</span>
             <h3>Smart Solar Technologies — Computer Engineer Intern</h3>
             <p>
-              Developed deep learning models with PyTorch and contributed to data preparation,
-              model training, evaluation, and experimental reporting workflows.
+              Developed deep learning models using PyTorch and contributed to the full pipeline,
+              including data preparation, model training, evaluation, and experimental reporting.
             </p>
           </div>
         </article>
 
         <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Jul 2022 — Jan 2023</span>
-            <h3>Istanbul University — AI & Image Processing Intern</h3>
+          <div class="timeline-marker"></div>
+          <div class="timeline-card">
+            <span class="timeline-date">July 2022 — January 2023</span>
+            <h3>Istanbul University — Artificial Intelligence & Image Processing Intern</h3>
             <p>
-              Built image processing modules using Python and C++. Optimized real-time object
-              detection, segmentation, and filtering processes with OpenCV.
+              Built image processing-focused modules using Python and C++. Optimized real-time
+              object detection, segmentation, and filtering processes with OpenCV.
             </p>
           </div>
         </article>
 
         <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Feb 2022 — Jul 2022</span>
+          <div class="timeline-marker"></div>
+          <div class="timeline-card">
+            <span class="timeline-date">February 2022 — July 2022</span>
             <h3>TNC Group — Project Management Intern</h3>
             <p>
-              Gained hands-on experience in project initiation, planning, execution, evaluation,
-              teamwork, problem-solving, organization, and process improvement.
+              Gained hands-on experience in project planning, execution, evaluation, teamwork,
+              organization, problem-solving, and process improvement.
             </p>
           </div>
         </article>
@@ -265,8 +277,8 @@
     <!-- PROJECTS -->
     <section class="section" id="projects">
       <div class="section-heading reveal">
-        <span class="section-kicker">Projects & Competitions</span>
-        <h2>Selected work across AI research, computer vision, and software labs.</h2>
+        <span class="section-label">Projects & Competitions</span>
+        <h2>Selected work across computer vision, AI research, and software development.</h2>
       </div>
 
       <div class="project-grid">
@@ -277,13 +289,13 @@
           </div>
           <h3>Agricultural Technologies Finalist</h3>
           <p>
-            Developed a video processing pipeline using OpenCV to improve real-time
-            system analysis capabilities in the Agricultural Technologies category.
+            Developed a video processing pipeline using OpenCV and improved real-time analysis
+            capabilities for agricultural technology scenarios.
           </p>
-          <div class="project-tags">
+          <div class="tag-list">
             <span>OpenCV</span>
             <span>Video Processing</span>
-            <span>Real-Time AI</span>
+            <span>Real-Time Analysis</span>
           </div>
         </article>
 
@@ -294,10 +306,10 @@
           </div>
           <h3>Action-Based Turkish LLM Competition</h3>
           <p>
-            Optimized PyTorch and TensorFlow-based models for production-oriented deployment
-            and improved model-driven decision-making mechanisms.
+            Optimized PyTorch and TensorFlow-based models for deployment-oriented workflows and
+            improved model-driven decision-making mechanisms.
           </p>
-          <div class="project-tags">
+          <div class="tag-list">
             <span>LLMs</span>
             <span>PyTorch</span>
             <span>TensorFlow</span>
@@ -311,10 +323,10 @@
           </div>
           <h3>YOLOv8-Based Intelligent Traffic Management</h3>
           <p>
-            Contributed to deep learning models for real-time vehicle detection,
-            classification, and traffic density analysis.
+            Contributed to deep learning models for real-time vehicle detection, classification,
+            and traffic density analysis.
           </p>
-          <div class="project-tags">
+          <div class="tag-list">
             <span>YOLOv8</span>
             <span>Computer Vision</span>
             <span>Traffic AI</span>
@@ -328,15 +340,15 @@
           </div>
           <h3>AI-Assisted Development Labs</h3>
           <p>
-            Organized hands-on learning repositories around prompt engineering,
-            MCP workflows, SpecKit, and AI-assisted software development.
+            Organized hands-on repositories around prompt engineering, MCP workflows, SpecKit,
+            and AI-assisted software development.
           </p>
-          <div class="project-tags">
-            <span>GitHub</span>
-            <span>SpecKit</span>
+          <div class="tag-list">
+            <span>Prompt Engineering</span>
             <span>MCP</span>
+            <span>SpecKit</span>
           </div>
-          <a class="inline-link" href="https://github.com/NurBilgeOZCAN" target="_blank" rel="noopener">
+          <a class="text-link" href="https://github.com/NurBilgeOZCAN" target="_blank" rel="noopener">
             Visit GitHub →
           </a>
         </article>
@@ -344,18 +356,19 @@
     </section>
 
     <!-- PUBLICATION -->
-    <section class="section publication-section" id="publication">
+    <section class="section" id="publication">
       <div class="publication-card reveal">
-        <div>
-          <span class="section-kicker">IEEE Publication</span>
-          <h2>Strawberry Ripeness Detection</h2>
+        <div class="publication-content">
+          <span class="section-label">IEEE Publication</span>
+          <h2>Strawberry Ripeness Detection with YOLOv11</h2>
           <p class="publication-title">
             “Strawberry Ripeness Detection: Optimizing Harvesting Efficiency with YOLOv11”
           </p>
           <p>
             Authors: Tahsin Soyak, Nur Bilge Özcan, Gökalp Çınarer.
-            Published by IEEE, Conference Date: May 23–24, 2025.
+            Published by IEEE. Conference Date: May 23–24, 2025.
           </p>
+
           <div class="publication-actions">
             <a
               href="https://doi.org/10.1109/ICHORA65333.2025.11017268"
@@ -365,6 +378,7 @@
             >
               View DOI
             </a>
+
             <a
               href="https://ieeexplore.ieee.org/document/11017268"
               class="btn btn-secondary"
@@ -377,21 +391,21 @@
         </div>
 
         <div class="publication-visual">
-          <div class="strawberry">🍓</div>
-          <span>YOLOv11</span>
-          <small>Computer Vision for Smart Agriculture</small>
+          <div class="strawberry-icon">🍓</div>
+          <strong>YOLOv11</strong>
+          <span>Computer Vision for Smart Agriculture</span>
         </div>
       </div>
     </section>
 
-    <!-- VOLUNTEER -->
-    <section class="section" id="volunteer">
+    <!-- COMMUNITY -->
+    <section class="section" id="community">
       <div class="section-heading reveal">
-        <span class="section-kicker">Community</span>
-        <h2>Leadership, mentoring, and student community involvement.</h2>
+        <span class="section-label">Community & Leadership</span>
+        <h2>Active in student communities, mentoring, and technology initiatives.</h2>
       </div>
 
-      <div class="community-grid reveal">
+      <div class="community-list reveal">
         <span>Microsoft Student Ambassador</span>
         <span>Google Developer Groups Member</span>
         <span>T3 Foundation Instructor & Mentor</span>
@@ -404,7 +418,7 @@
     <!-- CONTACT -->
     <section class="section contact-section" id="contact">
       <div class="contact-card reveal">
-        <span class="section-kicker">Contact</span>
+        <span class="section-label">Contact</span>
         <h2>Let’s connect for AI, research, and software projects.</h2>
         <p>
           I am open to academic collaboration, AI research, software development opportunities,
@@ -435,10 +449,10 @@
   </main>
 
   <footer class="footer">
-    <p>© <span id="year"></span> Nur Bilge Özcan. Built with HTML, CSS, JavaScript, and curiosity.</p>
-    <a href="#top">Back to top ↑</a>
+    <p>© <span id="year">2026</span> Nur Bilge Özcan. Built with HTML, CSS, JavaScript, and curiosity.</p>
+    <a href="#home">Back to top ↑</a>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="./script.js?v=2026-05-11" defer></script>
 </body>
 </html>
