@@ -1,404 +1,444 @@
-<!doctype html>
-<html lang="tr">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nur Bilge Özcan — Yapay Zeka & Bilgisayar Mühendisi</title>
-  <meta name="description" content="Nur Bilge Özcan - Yapay Zeka, Derin Öğrenme ve Bilgisayar Mühendisliği alanında deneyimli, TEKNOFEST finalisti ve IEEE yayınına sahip mühendis." />
-  <style>
-    :root{--bg:#0b1020;--card:#0f1724;--accent:#6EE7B7;--muted:#9aa3b2;--glass:rgba(255,255,255,0.04)}
-    *{box-sizing:border-box}html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;color:#e6eef6;background:linear-gradient(180deg,#071024 0%, #0b1020 60%);-webkit-font-smoothing:antialiased}
-    /* Canvas background */
-    #bgCanvas{position:fixed;inset:0;z-index:0}
-    .wrap{position:relative;z-index:5;max-width:1100px;margin:40px auto;padding:28px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    header{display:flex;align-items:center;gap:18px}
-    .avatar{width:96px;height:96px;border-radius:16px;background:linear-gradient(45deg,var(--accent),#60A5FA);display:flex;align-items:center;justify-content:center;font-weight:700;color:#061221;font-size:26px;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
-    .intro h1{margin:0;font-size:28px}
-    .intro p{margin:6px 0;color:var(--muted)}
+  <title>Nur Bilge Özcan | AI & Software Portfolio</title>
 
-    nav{display:flex;gap:10px;margin-top:18px}
-    .btn{background:var(--glass);border:1px solid rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;color:#eaf6f1;cursor:pointer;backdrop-filter:blur(6px);transition:transform .22s ease,box-shadow .22s;text-decoration:none;display:inline-block}
-    .btn:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.6)}
+  <meta
+    name="description"
+    content="Nur Bilge Özcan — Computer Engineering student, AI researcher, software developer, IEEE author, and TEKNOFEST finalist."
+  />
 
-    .hero{display:grid;grid-template-columns:1fr 340px;gap:20px;margin-top:18px}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+  <link rel="stylesheet" href="styles.css" />
 
-    .about{line-height:1.55;color:var(--muted)}
-    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-    .skill{padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:10px;font-size:13px}
-
-    .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:18px}
-    .proj{padding:12px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);cursor:pointer;transition:transform .18s ease,box-shadow .18s}
-    .proj:hover{transform:translateY(-8px);box-shadow:0 14px 30px rgba(16,26,40,0.6)}
-    .proj h4{margin:0 0 6px 0}
-    .proj p{margin:0;color:var(--muted);font-size:13px}
-
-    /* Floating interactive buttons */
-    .float-actions{position:fixed;right:26px;bottom:28px;display:flex;flex-direction:column;gap:12px;z-index:20}
-    .fab{width:60px;height:60px;border-radius:16px;background:linear-gradient(45deg,#6EE7B7,#60A5FA);display:flex;align-items:center;justify-content:center;color:#061221;font-weight:700;cursor:pointer;box-shadow:0 12px 30px rgba(6,12,24,0.6);transition:transform .18s}
-    .fab:active{transform:scale(.98)}
-
-    footer{margin-top:28px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-
-    /* Modal */
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(2,6,23,0.7),rgba(2,6,23,0.9));z-index:40}
-    .modal.open{display:flex}
-    .modal .box{width:min(920px,94%);background:var(--card);padding:20px;border-radius:12px;max-height:90vh;overflow-y:auto}
-    .modal-content p{line-height:1.6}
-
-    /* Experience section */
-    .experience{margin-top:28px}
-    .exp-item{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.05)}
-    .exp-item:last-child{border-bottom:none}
-    .exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
-    .exp-title{font-weight:600}
-    .exp-company{color:var(--accent)}
-    .exp-date{color:var(--muted);font-size:14px}
-    .exp-desc{color:var(--muted);font-size:14px;line-height:1.5}
-
-    /* Education section */
-    .edu-item{margin-bottom:18px}
-    .edu-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
-    .edu-title{font-weight:600}
-    .edu-school{color:var(--accent)}
-    .edu-date{color:var(--muted);font-size:14px}
-    .edu-desc{color:var(--muted);font-size:14px}
-
-    /* Publications section */
-    .pub-item{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.05)}
-    .pub-item:last-child{border-bottom:none}
-    .pub-title{font-weight:600;margin-bottom:6px}
-    .pub-authors{color:var(--muted);font-size:14px;margin-bottom:4px}
-    .pub-venue{color:var(--accent);font-size:14px;margin-bottom:4px}
-    .pub-date{color:var(--muted);font-size:14px}
-
-    /* Responsive */
-    @media (max-width:880px){.hero{grid-template-columns:1fr}.wrap{padding:18px}.avatar{width:76px;height:76px}}
-    @media (max-width:600px){.exp-header,.edu-header{flex-direction:column;gap:4px}}
-
-    /* small animations */
-    .typed{display:inline-block;color:var(--accent);font-weight:600}
-    .pulse{animation:pulse 2s infinite}
-    @keyframes pulse{0%{transform:scale(.98)}50%{transform:scale(1.02)}100%{transform:scale(.98)}}
-
-    /* Section spacing */
-    section{margin-top:28px}
-    section h3{margin-top:0}
-
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
 </head>
-<body>
-  <canvas id="bgCanvas"></canvas>
-  <div class="wrap">
-    <header>
-      <div class="avatar">NB</div>
-      <div class="intro">
-        <h1>Nur Bilge Özcan</h1>
-        <p>Bilgisayar Mühendisliği 4. Sınıf • Yapay Zeka, Derin Öğrenme & LLM</p>
-        <nav>
-          <button class="btn" data-scroll="about">Hakkımda</button>
-          <button class="btn" data-scroll="experience">Deneyim</button>
-          <button class="btn" data-scroll="projects">Projeler</button>
-          <button class="btn" data-scroll="education">Eğitim</button>
-          <button class="btn" data-scroll="publications">Yayınlar</button>
-          <a class="btn" id="downloadCv" href="#">Özgeçmişi İndir</a>
-        </nav>
-      </div>
-    </header>
 
-    <section class="hero">
-      <div>
-        <div class="card about" id="about">
-          <h3>Merhaba 👋, ben <span class="typed">Nur Bilge</span></h3>
-          <p>
-            Yozgat Bozok Üniversitesi Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. Yapay zeka, derin öğrenme, LLM ve proje yönetimi alanlarında deneyimli, ekip çalışmasına yatkın, yenilikçi ve sonuç odaklı bir mühendisim. TEKNOFEST finalistliği, TÜBİTAK projeleri ve IEEE yayınım bulunmaktadır.
+<body>
+  <div class="page-glow page-glow-one"></div>
+  <div class="page-glow page-glow-two"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <header class="site-header" id="top">
+    <nav class="navbar">
+      <a href="#top" class="logo">
+        <span class="logo-mark">NB</span>
+        <span class="logo-text">Nur Bilge Özcan</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#publication">Publication</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero section">
+      <div class="hero-grid">
+        <div class="hero-content reveal">
+          <div class="eyebrow">
+            <span class="pulse-dot"></span>
+            Computer Engineering · AI Research · Software Development
+          </div>
+
+          <h1>
+            Building intelligent systems with
+            <span class="gradient-text">AI, vision, and software engineering.</span>
+          </h1>
+
+          <p class="hero-description">
+            I am Nur Bilge Özcan, a Computer Engineering student focused on artificial intelligence,
+            deep learning, computer vision, and modern software development. I enjoy building
+            research-oriented projects, contributing to open-source work, and exploring AI-assisted
+            engineering workflows.
           </p>
 
-          <div class="skills" aria-hidden="false">
-            <div class="skill">Python</div>
-            <div class="skill">YOLO / CNN</div>
-            <div class="skill">LLM</div>
-            <div class="skill">C++</div>
-            <div class="skill">Gömülü Sistemler</div>
-            <div class="skill">Proje Yönetimi</div>
-            <div class="skill">Görsel Tanıma</div>
-            <div class="skill">Derin Öğrenme</div>
-            <div class="skill">Makine Öğrenimi</div>
-            <div class="skill">Arduino</div>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="cv.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Download CV</a>
           </div>
 
-          <h4 style="margin-top:14px">İletişim</h4>
-          <p class="muted">📞 +90 552 236 95 14 • ✉ bilgeozcan@gmail.com</p>
-          <p style="margin-top:6px"><a href="https://linkedin.com/in/nur-bilge-%C3%B6zcan-123975257" target="_blank">LinkedIn</a> • <a href="https://github.com/BILGEOZCAN" target="_blank">GitHub</a></p>
+          <div class="hero-meta">
+            <div>
+              <strong>3.10 / 4.00</strong>
+              <span>Current GPA</span>
+            </div>
+            <div>
+              <strong>IEEE</strong>
+              <span>Published Author</span>
+            </div>
+            <div>
+              <strong>2x</strong>
+              <span>TEKNOFEST Finalist</span>
+            </div>
+          </div>
         </div>
 
-        <div class="card" style="margin-top:12px">
-          <h3>Hızlı Bilgiler</h3>
-          <p class="muted">Doğum: 5 Mart 2004 • Kayseri</p>
-          <p class="muted">Eğitim: Yozgat Bozok Üniversitesi — Bilgisayar Mühendisliği</p>
-          <p class="muted">GANO: 2.80</p>
+        <div class="hero-visual reveal">
+          <div class="orbit-card">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="profile-core">
+              <span class="core-icon">🤖</span>
+              <h2>AI Researcher</h2>
+              <p>Computer Vision · Deep Learning · LLMs</p>
+            </div>
+
+            <div class="floating-chip chip-one">PyTorch</div>
+            <div class="floating-chip chip-two">OpenCV</div>
+            <div class="floating-chip chip-three">TensorFlow</div>
+            <div class="floating-chip chip-four">YOLO</div>
+          </div>
         </div>
-        
-        <section class="card experience" id="experience">
-          <h3>İş Deneyimi</h3>
-          
-          <div class="exp-item">
-            <div class="exp-header">
-              <div>
-                <div class="exp-title">Araştırmacı / Yazılım Mühendisi</div>
-                <div class="exp-company">Tübitak · Serbest Çalışan</div>
-              </div>
-              <div class="exp-date">Mayıs 2024 – Halen</div>
-            </div>
-            <div class="exp-desc">
-              Yapay zeka tabanlı akıllı trafik kontrol sistemi geliştirilmesi, görsel tanıma ve derin öğrenme algoritmalarının uygulanması, proje yönetimi ve teknik çözümleme süreçlerinde aktif rol alma.
-            </div>
-          </div>
-          
-          <div class="exp-item">
-            <div class="exp-header">
-              <div>
-                <div class="exp-title">Bilgisayar Mühendisi Stajyeri</div>
-                <div class="exp-company">Smart Güneş Teknolojileri</div>
-              </div>
-              <div class="exp-date">Ocak 2025 – Ağustos 2025</div>
-            </div>
-            <div class="exp-desc">
-              Görsel tanıma ve LLM tabanlı uygulamalar geliştirme, yazılım entegrasyonu, test ve teknik destek süreçleri, robotik sistemlerde yapay zeka modellerinin uyarlanması ve iyileştirilmesi.
-            </div>
-          </div>
-          
-          <div class="exp-item">
-            <div class="exp-header">
-              <div>
-                <div class="exp-title">Bilgisayar Mühendisliği Stajyeri</div>
-                <div class="exp-company">İstanbul Üniversitesi – 3B TETLab</div>
-              </div>
-              <div class="exp-date">Temmuz 2024 – Ocak 2025</div>
-            </div>
-            <div class="exp-desc">
-              Donanım tabanlı staj kapsamında Arduino ile gömülü sistem projeleri, görsel tanıma uygulamaları ve sensör entegrasyonu, prototip geliştirme ve test süreçlerinde yer alma.
-            </div>
-          </div>
-          
-          <div class="exp-item">
-            <div class="exp-header">
-              <div>
-                <div class="exp-title">Proje Yönetimi Stajyeri</div>
-                <div class="exp-company">TNC Group</div>
-              </div>
-              <div class="exp-date">Şubat 2025 – Mart 2025</div>
-            </div>
-            <div class="exp-desc">
-              Proje yönetimi, yapay zeka, bilişim hukuku ve organizasyon eğitimleri, stratejik proje planlama ve sunum.
-            </div>
-          </div>
-        </section>
-        
-        <section class="card education" id="education">
-          <h3>Eğitim</h3>
-          
-          <div class="edu-item">
-            <div class="edu-header">
-              <div>
-                <div class="edu-title">Lisans, Bilgisayar Mühendisliği</div>
-                <div class="edu-school">Yozgat Bozok Üniversitesi</div>
-              </div>
-              <div class="edu-date">Eylül 2022 – Devam Ediyor</div>
-            </div>
-            <div class="edu-desc">GANO: 2.80</div>
-          </div>
-          
-          <div class="edu-item">
-            <div class="edu-header">
-              <div>
-                <div class="edu-title">Lise</div>
-                <div class="edu-school">Belgin Atila Çallıoğlu Fen Lisesi</div>
-              </div>
-              <div class="edu-date">Eylül 2018 – Haziran 2022</div>
-            </div>
-            <div class="edu-desc">Diploma Puanı: 92,62</div>
-          </div>
-        </section>
-        
-        <section class="card" id="publications">
-          <h3>Yayınlar</h3>
-          
-          <div class="pub-item">
-            <div class="pub-title">"Strawberry Ripeness Detection: Optimizing Harvesting Efficiency with YOLOv11"</div>
-            <div class="pub-authors">Yazarlar: Tahsin Soyak, Nur Bilge Özcan, Gökalp Çınarer</div>
-            <div class="pub-venue">Yayıncı: IEEE</div>
-            <div class="pub-date">Konferans Tarihi: 23-24 Mayıs 2025 • DOI: 10.1109/ICHORA65333.2025.11017268</div>
-          </div>
-        </section>
       </div>
-
-      <aside class="card" style="height:100%">
-        <h3 style="margin-top:0">Öne Çıkan Projeler</h3>
-        <div class="projects" id="projects">
-          <div class="proj" data-title="Çilek Olgunluk Tespiti" data-desc="TEKNOFEST 2023 ve 2024 yarışmalarında finalist olan bu projede, YOLOv8 ve YOLOv10 modellerini kullanarak çilek olgunluk tespit sistemi geliştirdim. Sistem, tarım teknolojileri kategorisinde 7.'lik elde etti ve gelişmiş görsel tanıma algoritmalarıyla tarım verimliliğini artırmayı hedefledi." data-link="#">
-            <h4>Çilek Olgunluk Tespiti</h4>
-            <p>TEKNOFEST 2023 & 2024 projeleri</p>
-          </div>
-
-          <div class="proj" data-title="Akıllı Trafik Yönetimi" data-desc="TÜBİTAK destekli bu projede, YOLOv8 tabanlı akıllı trafik kontrol sistemi geliştirdim. Sistem, gerçek zamanlı trafik analizi yaparak trafik akışını optimize etmeyi ve kavşaklardaki bekleme sürelerini azaltmayı hedefliyor. Derin öğrenme algoritmalarıyla araç tespiti ve sınıflandırması yapıyor." data-link="#">
-            <h4>Akıllı Trafik Yönetimi</h4>
-            <p>TÜBİTAK projesi — Görsel tanıma ve kontrol</p>
-          </div>
-
-          <div class="proj" data-title="Kenevir Cinsiyet Tespiti" data-desc="Yozgat Bozok Üniversitesi Proje Etkinliği'nde 2.'lik ödülü alan bu projede, derin öğrenme modelleri kullanarak kenevir bitkilerinin cinsiyetini erken aşamada tespit eden bir sistem geliştirdim. Bu sistem, tarımsal üretimde verimliliği artırmayı hedefliyor." data-link="#">
-            <h4>Kenevir Cinsiyet Tespiti</h4>
-            <p>Derin öğrenme ile bitki analizi</p>
-          </div>
-          
-          <div class="proj" data-title="İlaç Fiyat Tahmini" data-desc="Yozgat Bozok Üniversitesi Proje Etkinliği'nde 3.'lük ödülü alan bu projede, makine öğrenimi algoritmaları kullanarak ilaç fiyat tahmini yapan bir model geliştirdim. Model, çeşitli farmasötik özelliklere dayanarak ilaç fiyatlarını tahmin ediyor." data-link="#">
-            <h4>İlaç Fiyat Tahmini</h4>
-            <p>Makine öğrenimi ile tahmin modeli</p>
-          </div>
-          
-          <div class="proj" data-title="IEEE Yayını" data-desc="IEEE'de yayınlanan 'Strawberry Ripeness Detection: Optimizing Harvesting Efficiency with YOLOv11' başlıklı makalede yazar olarak yer aldım. Bu çalışmada, YOLOv11 modelini kullanarak çilek olgunluk tespitinde yeni bir yaklaşım sunduk ve tarım verimliliğini artırmayı hedefledik." data-link="#">
-            <h4>IEEE Yayını</h4>
-            <p>IEEE • Strawberry Ripeness Detection (2025)</p>
-          </div>
-
-        </div>
-        
-        <div class="card" style="margin-top:18px">
-          <h3>Gönüllü Deneyim</h3>
-          <ul style="color:var(--muted);font-size:14px;padding-left:18px">
-            <li>Microsoft Student Ambassador</li>
-            <li>Google Developer Groups (GDG) Üyesi</li>
-            <li>T3 Vakfı, Eğitmen Mentor</li>
-            <li>YÖKAK Öğrenci Kalite Değerlendiricisi</li>
-            <li>Yozgat Bozok Üniversitesi Bilgisayar Topluluğu Başkanı</li>
-            <li>Yozgat Bozok Üniversitesi Kalite Topluluğu Kalite Elçisi</li>
-          </ul>
-        </div>
-        
-        <div class="card" style="margin-top:18px">
-          <h3>Referanslar</h3>
-          <div style="color:var(--muted);font-size:14px">
-            <p><strong>Zekiye İrem Akıcı</strong><br>
-            Markalar Genel Koordinatörü – TNC Group<br>
-            E-posta: iremakici@tncgroup.info</p>
-            
-            <p><strong>Görkem Kılıç</strong><br>
-            IT Uzmanı – Smart Güneş Teknolojileri<br>
-            Telefon: +90 537 723 86 19</p>
-            
-            <p><strong>Dr. Öğr. Üyesi Gökalp Çınarer</strong><br>
-            Yozgat Bozok Üniversitesi<br>
-            Telefon: +90 506 533 52 99</p>
-          </div>
-        </div>
-      </aside>
     </section>
 
-    <footer>
-      <div>© <span id="year"></span> Nur Bilge Özcan</div>
-      <div style="display:flex;gap:12px">
-        <a href="#" class="btn">Portfolio</a>
-        <a href="#" class="btn" id="downloadCvFooter">CV</a>
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-heading reveal">
+        <span class="section-kicker">About</span>
+        <h2>Research-minded developer with a strong AI focus.</h2>
+        <p>
+          My work connects academic research, model development, and practical software engineering.
+        </p>
       </div>
-    </footer>
-  </div>
 
-  <!-- Floating action buttons -->
-  <div class="float-actions">
-    <div class="fab" id="fabContact" title="E-posta">✉</div>
-    <div class="fab" id="fabTop" title="Başa Dön">↑</div>
-  </div>
+      <div class="about-grid">
+        <article class="glass-card reveal">
+          <div class="card-icon">🎓</div>
+          <h3>Education</h3>
+          <p>
+            Bachelor’s Degree in Computer Engineering at Yozgat Bozok University, Türkiye.
+            Current GPA: <strong>3.10 / 4.00</strong>.
+          </p>
+        </article>
 
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <div class="box">
-      <button class="btn" id="closeModal" style="float:right">Kapat</button>
-      <h2 id="modalTitle"></h2>
-      <div class="modal-content">
-        <p id="modalDesc"></p>
+        <article class="glass-card reveal">
+          <div class="card-icon">🧠</div>
+          <h3>AI & Machine Learning</h3>
+          <p>
+            Focused on machine learning, deep learning, CNNs, computer vision, NLP,
+            model training, evaluation, and prompt engineering.
+          </p>
+        </article>
+
+        <article class="glass-card reveal">
+          <div class="card-icon">💻</div>
+          <h3>Software Engineering</h3>
+          <p>
+            Experienced with Python, C++, Java, C#, JavaScript, MATLAB, SQL, Bash,
+            .NET, Spring Boot, Docker, Git, and Linux.
+          </p>
+        </article>
       </div>
-      <p style="margin-top:12px"><a id="modalLink" class="btn" href="#">Detayları Gör</a></p>
-    </div>
-  </div>
+    </section>
 
-  <script>
-    // --- Dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="section-heading reveal">
+        <span class="section-kicker">Skills</span>
+        <h2>Technical toolkit for AI-powered software products.</h2>
+      </div>
 
-    // --- Smooth scroll for nav
-    document.querySelectorAll('[data-scroll]').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const id = btn.getAttribute('data-scroll');
-        document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
-      });
-    });
+      <div class="skills-layout reveal">
+        <div class="skill-column">
+          <h3>Languages</h3>
+          <div class="tag-cloud">
+            <span>Python</span>
+            <span>C++</span>
+            <span>Java</span>
+            <span>C#</span>
+            <span>JavaScript</span>
+            <span>MATLAB</span>
+            <span>SQL</span>
+            <span>Bash</span>
+          </div>
+        </div>
 
-    // --- Projects modal
-    document.querySelectorAll('.proj').forEach(p=>{
-      p.addEventListener('click',()=>{
-        document.getElementById('modalTitle').textContent = p.dataset.title;
-        document.getElementById('modalDesc').textContent = p.dataset.desc;
-        document.getElementById('modalLink').href = p.dataset.link;
-        document.getElementById('modal').classList.add('open');
-      });
-    });
-    document.getElementById('closeModal').addEventListener('click',()=>document.getElementById('modal').classList.remove('open'));
+        <div class="skill-column">
+          <h3>AI & Data</h3>
+          <div class="tag-cloud">
+            <span>PyTorch</span>
+            <span>TensorFlow</span>
+            <span>Keras</span>
+            <span>OpenCV</span>
+            <span>Scikit-learn</span>
+            <span>NumPy</span>
+            <span>Pandas</span>
+            <span>CNNs</span>
+          </div>
+        </div>
 
-    // --- Floating actions
-    document.getElementById('fabTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-    document.getElementById('fabContact').addEventListener('click',()=>window.location.href='mailto:bilgeozcan@gmail.com');
+        <div class="skill-column">
+          <h3>Engineering</h3>
+          <div class="tag-cloud">
+            <span>.NET</span>
+            <span>Spring Boot</span>
+            <span>Docker</span>
+            <span>Git</span>
+            <span>GitHub</span>
+            <span>Linux</span>
+            <span>Agile</span>
+            <span>TDD</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    // --- CV download (assumes you will upload cv.pdf to same repo)
-    document.getElementById('downloadCv').addEventListener('click',(e)=>{
-      e.preventDefault();
-      const link = document.createElement('a');
-      link.href = 'NUR_BILGE_OZCAN.pdf';
-      link.download = 'NUR_BILGE_OZCAN_CV.pdf';
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    });
-    
-    document.getElementById('downloadCvFooter').addEventListener('click',(e)=>{
-      e.preventDefault();
-      const link = document.createElement('a');
-      link.href = 'NUR_BILGE_OZCAN.pdf';
-      link.download = 'NUR_BILGE_OZCAN_CV.pdf';
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    });
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="section-heading reveal">
+        <span class="section-kicker">Experience</span>
+        <h2>Applied AI, image processing, and software development experience.</h2>
+      </div>
 
-    // --- Tiny typed effect
-    (function(){
-      const el = document.querySelector('.typed');
-      const words = ['Yapay Zeka Mühendisi','Derin Öğrenme Araştırmacısı','Proje Yöneticisi'];
-      let w=0, i=0, back=false;
-      function tick(){
-        const word = words[w];
-        el.textContent = word.slice(0,i) + (i%2? '':'');
-        if(!back){ i++; if(i>word.length){back=true;setTimeout(tick,900);return}} else {i--; if(i===0){back=false; w=(w+1)%words.length}};
-        setTimeout(tick,90);
-      }
-      tick();
-    })();
+      <div class="timeline">
+        <article class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Sep 2025 — Jan 2026</span>
+            <h3>TÜBİTAK — Researcher / Software Engineer</h3>
+            <p>
+              Contributed to an artificial intelligence-based intelligent traffic control system.
+              Designed real-time image processing and decision-making components using OpenCV,
+              TensorFlow, and PyTorch.
+            </p>
+          </div>
+        </article>
 
-    // --- Simple particle background (optimized minimal)
-    (function(){
-      const c = document.getElementById('bgCanvas');
-      const ctx = c.getContext('2d');
-      let w = c.width = innerWidth, h = c.height = innerHeight, particles = [];
-      window.addEventListener('resize',()=>{w=c.width=innerWidth;h=c.height=innerHeight;init()});
-      function rand(min,max){return Math.random()*(max-min)+min}
-      function init(){particles = []; for(let i=0;i<Math.floor(w*h/60000);i++){particles.push({x:Math.random()*w,y:Math.random()*h,r:rand(0.5,2),vx:rand(-0.25,0.25),vy:rand(-0.25,0.25)})}}
-      function frame(){ctx.clearRect(0,0,w,h); for(let p of particles){p.x+=p.vx;p.y+=p.vy; if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0; ctx.beginPath(); ctx.globalAlpha=0.9; ctx.fillStyle='rgba(110,231,183,0.12)'; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill()} requestAnimationFrame(frame)}
-      init(); frame();
-    })();
+        <article class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Jan 2023 — Aug 2025</span>
+            <h3>Smart Solar Technologies — Computer Engineer Intern</h3>
+            <p>
+              Developed deep learning models with PyTorch and contributed to data preparation,
+              model training, evaluation, and experimental reporting workflows.
+            </p>
+          </div>
+        </article>
 
-    // -- keyboard shortcut: press 'p' to pulse avatar
-    document.addEventListener('keydown',e=>{if(e.key==='p'){document.querySelector('.avatar').classList.add('pulse'); setTimeout(()=>document.querySelector('.avatar').classList.remove('pulse'),900)}})
+        <article class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Jul 2022 — Jan 2023</span>
+            <h3>Istanbul University — AI & Image Processing Intern</h3>
+            <p>
+              Built image processing modules using Python and C++. Optimized real-time object
+              detection, segmentation, and filtering processes with OpenCV.
+            </p>
+          </div>
+        </article>
 
-  </script>
+        <article class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Feb 2022 — Jul 2022</span>
+            <h3>TNC Group — Project Management Intern</h3>
+            <p>
+              Gained hands-on experience in project initiation, planning, execution, evaluation,
+              teamwork, problem-solving, organization, and process improvement.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="section-heading reveal">
+        <span class="section-kicker">Projects & Competitions</span>
+        <h2>Selected work across AI research, computer vision, and software labs.</h2>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-badge">TEKNOFEST 2024</span>
+            <span class="project-rank">7th Place</span>
+          </div>
+          <h3>Agricultural Technologies Finalist</h3>
+          <p>
+            Developed a video processing pipeline using OpenCV to improve real-time
+            system analysis capabilities in the Agricultural Technologies category.
+          </p>
+          <div class="project-tags">
+            <span>OpenCV</span>
+            <span>Video Processing</span>
+            <span>Real-Time AI</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-badge">TEKNOFEST 2023</span>
+            <span class="project-rank">7th Place</span>
+          </div>
+          <h3>Action-Based Turkish LLM Competition</h3>
+          <p>
+            Optimized PyTorch and TensorFlow-based models for production-oriented deployment
+            and improved model-driven decision-making mechanisms.
+          </p>
+          <div class="project-tags">
+            <span>LLMs</span>
+            <span>PyTorch</span>
+            <span>TensorFlow</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-badge">BAP Project</span>
+            <span class="project-rank">AI Traffic</span>
+          </div>
+          <h3>YOLOv8-Based Intelligent Traffic Management</h3>
+          <p>
+            Contributed to deep learning models for real-time vehicle detection,
+            classification, and traffic density analysis.
+          </p>
+          <div class="project-tags">
+            <span>YOLOv8</span>
+            <span>Computer Vision</span>
+            <span>Traffic AI</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-badge">GitHub</span>
+            <span class="project-rank">Portfolio</span>
+          </div>
+          <h3>AI-Assisted Development Labs</h3>
+          <p>
+            Organized hands-on learning repositories around prompt engineering,
+            MCP workflows, SpecKit, and AI-assisted software development.
+          </p>
+          <div class="project-tags">
+            <span>GitHub</span>
+            <span>SpecKit</span>
+            <span>MCP</span>
+          </div>
+          <a class="inline-link" href="https://github.com/NurBilgeOZCAN" target="_blank" rel="noopener">
+            Visit GitHub →
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- PUBLICATION -->
+    <section class="section publication-section" id="publication">
+      <div class="publication-card reveal">
+        <div>
+          <span class="section-kicker">IEEE Publication</span>
+          <h2>Strawberry Ripeness Detection</h2>
+          <p class="publication-title">
+            “Strawberry Ripeness Detection: Optimizing Harvesting Efficiency with YOLOv11”
+          </p>
+          <p>
+            Authors: Tahsin Soyak, Nur Bilge Özcan, Gökalp Çınarer.
+            Published by IEEE, Conference Date: May 23–24, 2025.
+          </p>
+          <div class="publication-actions">
+            <a
+              href="https://doi.org/10.1109/ICHORA65333.2025.11017268"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener"
+            >
+              View DOI
+            </a>
+            <a
+              href="https://ieeexplore.ieee.org/document/11017268"
+              class="btn btn-secondary"
+              target="_blank"
+              rel="noopener"
+            >
+              IEEE Page
+            </a>
+          </div>
+        </div>
+
+        <div class="publication-visual">
+          <div class="strawberry">🍓</div>
+          <span>YOLOv11</span>
+          <small>Computer Vision for Smart Agriculture</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOLUNTEER -->
+    <section class="section" id="volunteer">
+      <div class="section-heading reveal">
+        <span class="section-kicker">Community</span>
+        <h2>Leadership, mentoring, and student community involvement.</h2>
+      </div>
+
+      <div class="community-grid reveal">
+        <span>Microsoft Student Ambassador</span>
+        <span>Google Developer Groups Member</span>
+        <span>T3 Foundation Instructor & Mentor</span>
+        <span>YÖKAK Student Quality Evaluator</span>
+        <span>Computer Engineering Student Society President</span>
+        <span>Quality Ambassador</span>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact-section" id="contact">
+      <div class="contact-card reveal">
+        <span class="section-kicker">Contact</span>
+        <h2>Let’s connect for AI, research, and software projects.</h2>
+        <p>
+          I am open to academic collaboration, AI research, software development opportunities,
+          and community-driven technology initiatives.
+        </p>
+
+        <div class="contact-actions">
+          <a href="mailto:bilgeozcan@gmail.com" class="btn btn-primary">Send Email</a>
+          <a
+            href="https://linkedin.com/in/nur-bilge-özcan-123975257"
+            class="btn btn-secondary"
+            target="_blank"
+            rel="noopener"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/NurBilgeOZCAN"
+            class="btn btn-secondary"
+            target="_blank"
+            rel="noopener"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Nur Bilge Özcan. Built with HTML, CSS, JavaScript, and curiosity.</p>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
